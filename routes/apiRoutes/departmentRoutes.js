@@ -63,7 +63,7 @@ router.get('/department', (req, res) => {
       VALUES (?)`;
       const params = [body.name];
   
-      db.query(sql, params, (err, result) => {
+      db.query(sql, params, (err) => {
         if(err) {
           res.status(400).json({ error: err.message});
           return;

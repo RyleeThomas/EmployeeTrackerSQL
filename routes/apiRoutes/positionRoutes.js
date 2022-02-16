@@ -59,21 +59,20 @@ router.get('/position', (req, res) => {
   
   //Create a position
   router.post('/position', ({ body }, res) => {
-      const sql = `INSERT INTO position (title, salary, department_id)
-      VALUES (?,?,?)`;
+      const sql = `INSERT INTO position (title, salary, department_id) VALUES (?,?,?)`;
       const params = [body.title, body.salary, body.department_id];
   
-      db.query(sql, params, (err, result) => {
+      db.query(sql, params, (err) => {
         if(err) {
           res.status(400).json({ error: err.message});
           return;
         }
         res.json({
           message: 'success',
-          data:body
+          data: body
         });
   
       }); 
   });
 
-  module.exports = router;
+module.exports = router;
