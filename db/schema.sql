@@ -1,30 +1,26 @@
-DROP TABLE IF EXISTS department;
-DROP TABLE IF EXISTS position;
 DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS postions;
+DROP TABLE IF EXISTS department;
 
-
-/* createds a department table */
 CREATE TABLE department (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL
-);
-
-/*Creates a position Table*/
-CREATE TABLE position (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL,
-    salary INTEGER,
-    department_id INTEGER,
-    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE SET NULL
+    name VARCHAR(30) NOT NULL
 );
 
-/* creates a table foundation with the data critieria */
+CREATE TABLE postions (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30),
+    salary DECIMAL,
+    department_id INTEGER,  
+    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE SET NULL 
+);
+
 CREATE TABLE employee (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  position_id INTEGER,
-  manager_id INTEGER,
-  CONSTRAINT fk_position FOREIGN KEY (position_id) REFERENCES position(id) ON DELETE SET NULL,
-  CONSTRAINT fk_employee FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL 
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30), 
+    last_name VARCHAR(30),
+    postions_id INTEGER,
+    manager_id INTEGER,
+    CONSTRAINT fk_postions FOREIGN KEY (postions_id) REFERENCES postions(id) ON DELETE SET NULL,
+    CONSTRAINT fk_employee FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
