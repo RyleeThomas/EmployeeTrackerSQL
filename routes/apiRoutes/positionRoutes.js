@@ -3,8 +3,8 @@ const router = express.Router();
 const db = require('../../db/connection');
 
 //Get all position
-router.get('/position', (req, res) => {
-    const sql = `SELECT * FROM position`;
+router.get('/positions', (req, res) => {
+    const sql = `SELECT * FROM positions`;
   
     db.query(sql, (err, rows) => {
       if(err) {
@@ -19,8 +19,8 @@ router.get('/position', (req, res) => {
   });
   
   //Get a single position
-  router.get('/position/:id', (req, res) => {
-    const sql = `SELECT * FROM position WHERE id = ?`;
+  router.get('/positions/:id', (req, res) => {
+    const sql = `SELECT * FROM positions WHERE id = ?`;
   const params = [req.params.id];
   
     db.query(sql, params, (err, row) => {
@@ -36,8 +36,8 @@ router.get('/position', (req, res) => {
   });
   
   //Delete a position
-  router.delete('/position/:id', (req, res) => {
-    const sql = `DELETE FROM department WHERE id = ?`;
+  router.delete('/positions/:id', (req, res) => {
+    const sql = `DELETE FROM positions WHERE id = ?`;
     const params = [req.params.id];
   
     db.query(sql, params, (err, result) => {
@@ -58,8 +58,8 @@ router.get('/position', (req, res) => {
   });
   
   //Create a position
-  router.post('/position', ({ body }, res) => {
-      const sql = `INSERT INTO position (title, salary, department_id) VALUES (?,?,?)`;
+  router.post('/positions', ({ body }, res) => {
+      const sql = `INSERT INTO positions (title, salary, department_id) VALUES (?,?,?)`;
       const params = [body.title, body.salary, body.department_id];
   
       db.query(sql, params, (err) => {
